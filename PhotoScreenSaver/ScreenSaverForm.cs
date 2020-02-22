@@ -35,6 +35,7 @@ namespace PhotoScreenSaver
         public ScreenSaverForm(Rectangle Bounds)
         {
             InitializeComponent();
+            this.Bounds = Bounds;
         }
 
         //constructor gets used when running in preview mode
