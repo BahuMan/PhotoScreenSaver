@@ -30,10 +30,12 @@
         {
             this.TitleLabel = new System.Windows.Forms.Label();
             this.Attribution = new System.Windows.Forms.Label();
-            this.textToDisplay = new System.Windows.Forms.TextBox();
-            this.textToDisplayLabel = new System.Windows.Forms.Label();
-            this.CancelButton = new System.Windows.Forms.Button();
-            this.OKButton = new System.Windows.Forms.Button();
+            this.FolderName = new System.Windows.Forms.TextBox();
+            this.FolderLabel = new System.Windows.Forms.Label();
+            this.CancelButton1 = new System.Windows.Forms.Button();
+            this.OKButton1 = new System.Windows.Forms.Button();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.folderBrowseButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TitleLabel
@@ -56,41 +58,51 @@
             this.Attribution.TabIndex = 1;
             this.Attribution.Text = "by Bart Huylebroeck";
             // 
-            // textToDisplay
+            // FolderName
             // 
-            this.textToDisplay.Location = new System.Drawing.Point(46, 148);
-            this.textToDisplay.Name = "textToDisplay";
-            this.textToDisplay.Size = new System.Drawing.Size(353, 20);
-            this.textToDisplay.TabIndex = 2;
+            this.FolderName.Location = new System.Drawing.Point(46, 148);
+            this.FolderName.Name = "FolderName";
+            this.FolderName.Size = new System.Drawing.Size(314, 20);
+            this.FolderName.TabIndex = 2;
             // 
-            // textToDisplayLabel
+            // FolderLabel
             // 
-            this.textToDisplayLabel.AutoSize = true;
-            this.textToDisplayLabel.Location = new System.Drawing.Point(46, 132);
-            this.textToDisplayLabel.Name = "textToDisplayLabel";
-            this.textToDisplayLabel.Size = new System.Drawing.Size(78, 13);
-            this.textToDisplayLabel.TabIndex = 3;
-            this.textToDisplayLabel.Text = "Text to display:";
+            this.FolderLabel.AutoSize = true;
+            this.FolderLabel.Location = new System.Drawing.Point(46, 132);
+            this.FolderLabel.Name = "FolderLabel";
+            this.FolderLabel.Size = new System.Drawing.Size(131, 13);
+            this.FolderLabel.TabIndex = 3;
+            this.FolderLabel.Text = "Folder containing pictures:";
             // 
-            // CancelButton
+            // CancelButton1
             // 
-            this.CancelButton.Location = new System.Drawing.Point(248, 226);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(151, 34);
-            this.CancelButton.TabIndex = 4;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            this.CancelButton1.Location = new System.Drawing.Point(248, 226);
+            this.CancelButton1.Name = "CancelButton1";
+            this.CancelButton1.Size = new System.Drawing.Size(151, 34);
+            this.CancelButton1.TabIndex = 4;
+            this.CancelButton1.Text = "Cancel";
+            this.CancelButton1.UseVisualStyleBackColor = true;
+            this.CancelButton1.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // OKButton
+            // OKButton1
             // 
-            this.OKButton.Location = new System.Drawing.Point(46, 226);
-            this.OKButton.Name = "OKButton";
-            this.OKButton.Size = new System.Drawing.Size(151, 34);
-            this.OKButton.TabIndex = 4;
-            this.OKButton.Text = "OK";
-            this.OKButton.UseVisualStyleBackColor = true;
-            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
+            this.OKButton1.Location = new System.Drawing.Point(46, 226);
+            this.OKButton1.Name = "OKButton1";
+            this.OKButton1.Size = new System.Drawing.Size(151, 34);
+            this.OKButton1.TabIndex = 4;
+            this.OKButton1.Text = "OK";
+            this.OKButton1.UseVisualStyleBackColor = true;
+            this.OKButton1.Click += new System.EventHandler(this.OKButton_Click);
+            // 
+            // folderBrowseButton
+            // 
+            this.folderBrowseButton.Location = new System.Drawing.Point(366, 148);
+            this.folderBrowseButton.Name = "folderBrowseButton";
+            this.folderBrowseButton.Size = new System.Drawing.Size(32, 20);
+            this.folderBrowseButton.TabIndex = 5;
+            this.folderBrowseButton.Text = "...";
+            this.folderBrowseButton.UseVisualStyleBackColor = true;
+            this.folderBrowseButton.Click += new System.EventHandler(this.folderBrowseButton_Click);
             // 
             // SettingsForm
             // 
@@ -98,10 +110,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(451, 293);
-            this.Controls.Add(this.OKButton);
-            this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.textToDisplayLabel);
-            this.Controls.Add(this.textToDisplay);
+            this.Controls.Add(this.folderBrowseButton);
+            this.Controls.Add(this.OKButton1);
+            this.Controls.Add(this.CancelButton1);
+            this.Controls.Add(this.FolderLabel);
+            this.Controls.Add(this.FolderName);
             this.Controls.Add(this.Attribution);
             this.Controls.Add(this.TitleLabel);
             this.Name = "SettingsForm";
@@ -115,9 +128,11 @@
 
         private System.Windows.Forms.Label TitleLabel;
         private System.Windows.Forms.Label Attribution;
-        private System.Windows.Forms.TextBox textToDisplay;
-        private System.Windows.Forms.Label textToDisplayLabel;
-        private System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.Button OKButton;
+        private System.Windows.Forms.TextBox FolderName;
+        private System.Windows.Forms.Label FolderLabel;
+        private System.Windows.Forms.Button CancelButton1;
+        private System.Windows.Forms.Button OKButton1;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Button folderBrowseButton;
     }
 }

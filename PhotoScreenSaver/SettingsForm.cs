@@ -12,13 +12,14 @@ namespace PhotoScreenSaver
             LoadSettings();
         }
 
+        public const string REG_FOLDER_NAME = "FolderName";
 
         private void SaveSettings()
         {
             // Create or get existing Registry subkey
             RegistryKey key = Registry.CurrentUser.CreateSubKey("SOFTWARE\\Bart_ScreenSaver");
 
-            key.SetValue("text", textToDisplay.Text);
+            key.SetValue(REG_FOLDER_NAME, FolderName.Text);
         }
 
         private void LoadSettings()
@@ -26,9 +27,9 @@ namespace PhotoScreenSaver
             // Get the value stored in the Registry
             RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Bart_ScreenSaver");
             if (key == null)
-                textToDisplay.Text = "C# Screen Saver";
+                FolderName.Text = "C# Screen Saver";
             else
-                textToDisplay.Text = (string)key.GetValue("text");
+                FolderName.Text = (string)key.GetValue(REG_FOLDER_NAME);
         }
 
         private void OKButton_Click(object sender, EventArgs e)
@@ -40,6 +41,15 @@ namespace PhotoScreenSaver
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void folderBrowseButton_Click(object sender, EventArgs e)
+        {
+            DialogResult folderResult = folderBrowserDialog1.ShowDialog();
+            if (folderResult == DialogResult.OK)
+            {
+                FolderName.Text = folderBrowserDialog1.SelectedPath;
+            }
         }
     }
 }

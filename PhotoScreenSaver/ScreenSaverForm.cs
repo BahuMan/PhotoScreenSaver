@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -26,12 +27,14 @@ namespace PhotoScreenSaver
         }
 
         private bool previewMode = false;
+        private float aspectRatio = 1.0f; //width:height
+        private string pictureFolder = ".";
+        private string[] PictureFiles;
 
         //constructor gets used in default, full-screen mode
         public ScreenSaverForm(Rectangle Bounds)
         {
             InitializeComponent();
-            this.Bounds = Bounds;
         }
 
         //constructor gets used when running in preview mode
@@ -52,9 +55,6 @@ namespace PhotoScreenSaver
             Size = ParentRect.Size;
             Location = new Point(0, 0);
 
-            // Make text smaller
-            ourTextLabel.Font = new System.Drawing.Font("Arial", 6);
-
             previewMode = true;
         }
 
@@ -63,16 +63,22 @@ namespace PhotoScreenSaver
             Cursor.Hide();
             TopMost = true;
 
-            moveTimer.Interval = 1000;
-            moveTimer.Tick += new EventHandler(MoveTimer_Tick);
-            moveTimer.Start();
+            this.aspectRatio = Bounds.Width / Bounds.Height;
+            //moveTimer.Interval = 1000;
+            //moveTimer.Tick += new EventHandler(MoveTimer_Tick);
+            //moveTimer.Start();
 
+            
             // Use the string from the Registry if it exists
             RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Bart_ScreenSaver");
 
             if (key != null)
-                ourTextLabel.Text = (string)key.GetValue("text");
+                pictureFolder = (string)key.GetValue(SettingsForm.REG_FOLDER_NAME);
 
+            PictureFiles = Directory.GetFiles(pictureFolder, "*.jpg", SearchOption.AllDirectories);
+            pictureBox1.Image = Image.FromFile(PictureFiles[0]);
+            pictureBox2.Image = Image.FromFile(PictureFiles[1]);
+            pictureBox3.Image = Image.FromFile(PictureFiles[2]);
         }
 
         private void ScreenSaverForm_KeyPress(object sender, KeyPressEventArgs e)
@@ -109,8 +115,8 @@ namespace PhotoScreenSaver
         private void MoveTimer_Tick(object sender, EventArgs e)
         {
             // Move text to new location
-            ourTextLabel.Left = rand.Next(Math.Max(1, Bounds.Width - ourTextLabel.Width));
-            ourTextLabel.Top = rand.Next(Math.Max(1, Bounds.Height - ourTextLabel.Height));
+            //ourTextLabel.Left = rand.Next(Math.Max(1, Bounds.Width - ourTextLabel.Width));
+            //ourTextLabel.Top = rand.Next(Math.Max(1, Bounds.Height - ourTextLabel.Height));
         }
     }
 }
